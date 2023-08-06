@@ -461,16 +461,26 @@ func (v *AstVisitor) VisitArrayListLiteral(ctx *ArrayListLiteralContext) interfa
 			ctx.ExpressionList(
 			).(*ExpressionListContext)).(*ast.CallExpression)
 	}
-	token := ctx.LBRACKET().GetSymbol()
+ 	start_token := ctx.LBRACKET().GetSymbol()
 	var result = &ast.ArrayLiteral{
-		Token: token2token(token),
+		Token: token2token(start_token),
 		Elements: cexpr.Arguments}
 	return result
 }
 
 func (v *AstVisitor) VisitHashMapLiteral(ctx *HashMapLiteralContext) interface{} {
-	//token := ctx.LBRACE().GetSymbol()
-	return v.VisitHashMemberList(ctx.HashMemberList().(*HashMemberListContext))
+	start_token := ctx.LBRACE().GetSymbol()
+	var pairs = make(map[ast.Expression]ast.Expression)
+	var hexpr = &ast.HashLiteral{
+		Token: token2token(start_token),
+		Pairs: pairs}
+	if ctx.HashMemberList() != nil {
+		hexpr = v.VisitHashMemberList(ctx.HashMemberList().(*HashMemberListContext)).(*ast.HashLiteral)
+	}
+	var result = &ast.HashLiteral{
+		Token: token2token(start_token),
+		Pairs: hexpr.Pairs}
+	return result
 }
 
 func (v *AstVisitor) VisitHashMemberList(ctx *HashMemberListContext) interface{} {
