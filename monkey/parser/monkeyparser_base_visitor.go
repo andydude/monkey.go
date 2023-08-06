@@ -20,6 +20,10 @@ func (v *BaseMonkeyParserVisitor) VisitBlockStatement(ctx *BlockStatementContext
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseMonkeyParserVisitor) VisitExpressionStatement(ctx *ExpressionStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseMonkeyParserVisitor) VisitLetStatement(ctx *LetStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -28,11 +32,11 @@ func (v *BaseMonkeyParserVisitor) VisitReturnStatement(ctx *ReturnStatementConte
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitExpressionStatement(ctx *ExpressionStatementContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitExpression(ctx *ExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitExpression(ctx *ExpressionContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitExpressionList(ctx *ExpressionListContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -48,11 +52,11 @@ func (v *BaseMonkeyParserVisitor) VisitRelOperator(ctx *RelOperatorContext) inte
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitFactorOperator(ctx *FactorOperatorContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitTermOperator(ctx *TermOperatorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitTermOperator(ctx *TermOperatorContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitFactorOperator(ctx *FactorOperatorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -60,11 +64,11 @@ func (v *BaseMonkeyParserVisitor) VisitPrefixExpression(ctx *PrefixExpressionCon
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitPostfixExpression(ctx *PostfixExpressionContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitPrefixOperator(ctx *PrefixOperatorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitPrefixOperator(ctx *PrefixOperatorContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitPostfixExpression(ctx *PostfixExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -84,11 +88,19 @@ func (v *BaseMonkeyParserVisitor) VisitIfExpression(ctx *IfExpressionContext) in
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitLiteralExpression(ctx *LiteralExpressionContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitFunctionLiteral(ctx *FunctionLiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitFunctionLiteral(ctx *FunctionLiteralContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitIdentifier(ctx *IdentifierContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseMonkeyParserVisitor) VisitIdentifierList(ctx *IdentifierListContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseMonkeyParserVisitor) VisitLiteralExpression(ctx *LiteralExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -104,10 +116,6 @@ func (v *BaseMonkeyParserVisitor) VisitStringLiteral(ctx *StringLiteralContext) 
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitIdentifier(ctx *IdentifierContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
 func (v *BaseMonkeyParserVisitor) VisitArrayListLiteral(ctx *ArrayListLiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -116,14 +124,10 @@ func (v *BaseMonkeyParserVisitor) VisitHashMapLiteral(ctx *HashMapLiteralContext
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitHashMapMember(ctx *HashMapMemberContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitHashMemberList(ctx *HashMemberListContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMonkeyParserVisitor) VisitExpressionList(ctx *ExpressionListContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseMonkeyParserVisitor) VisitIdentifierList(ctx *IdentifierListContext) interface{} {
+func (v *BaseMonkeyParserVisitor) VisitHashMember(ctx *HashMemberContext) interface{} {
 	return v.VisitChildren(ctx)
 }

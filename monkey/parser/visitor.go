@@ -469,23 +469,30 @@ func (v *AstVisitor) VisitArrayListLiteral(ctx *ArrayListLiteralContext) interfa
 }
 
 func (v *AstVisitor) VisitHashMapLiteral(ctx *HashMapLiteralContext) interface{} {
-	token := ctx.LBRACE().GetSymbol()
+	//token := ctx.LBRACE().GetSymbol()
+	return v.VisitHashMemberList(ctx.HashMemberList().(*HashMemberListContext))
+}
+
+func (v *AstVisitor) VisitHashMemberList(ctx *HashMemberListContext) interface{} {
 	var pairs = make(map[ast.Expression]ast.Expression)
-	for _, pctx := range ctx.AllHashMapMember() {
-		alit, ok := v.VisitHashMapMember(
-			pctx.(*HashMapMemberContext)).(*ast.ArrayLiteral)
+	for _, pctx := range ctx.AllHashMember() {
+		alit, ok := v.VisitHashMember(
+			pctx.(*HashMemberContext)).(*ast.ArrayLiteral)
 		if !ok {
 			fmt.Printf("EXpected ArrayLiteral, got=%q", alit);
 		}
 		pairs[alit.Elements[0]] = alit.Elements[1]
 	}
-	var result = &ast.HashLiteral{
-		Token: token2token(token),
+	illegal_token := token.Token{
+		Type: token.ILLEGAL,
+		Literal: ""}
+ 	var result = &ast.HashLiteral{
+		Token: illegal_token,
 		Pairs: pairs}
 	return result
 }
 
-func (v *AstVisitor) VisitHashMapMember(ctx *HashMapMemberContext) interface{} {
+func (v *AstVisitor) VisitHashMember(ctx *HashMemberContext) interface{} {
 	var token = ctx.COLON().GetSymbol()
 	var result = &ast.ArrayLiteral{
 		Token: token2token(token),
