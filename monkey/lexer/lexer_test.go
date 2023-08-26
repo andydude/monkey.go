@@ -1,4 +1,4 @@
-package parser
+package lexer
 
 import (
 	"testing"
@@ -125,7 +125,7 @@ if (5 < 10) {
 		{token.EOF, ""},
 	}
 
-	l := NewLexer(input)
+	l := New(input)
 
 	for i, tt := range tests {
 		tok := l.NextToken()
