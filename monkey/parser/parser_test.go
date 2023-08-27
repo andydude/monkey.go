@@ -65,7 +65,7 @@ func TestReturnStatements(t *testing.T) {
 		stmt := program.Statements[0]
 		returnStmt, ok := stmt.(*ast.ReturnStatement)
 		if !ok {
-			t.Fatalf("stmt not *ast.returnStatement. got=%T", stmt)
+			t.Fatalf("stmt not *ast.ReturnStatement. got=%T", stmt)
 		}
 		if returnStmt.TokenLiteral() != "return" {
 			t.Fatalf("returnStmt.TokenLiteral not 'return', got %q",
