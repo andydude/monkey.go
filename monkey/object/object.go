@@ -1,5 +1,3 @@
-// SPDX-FileCopyrightText: 2016-2017 Thorsten Ball
-// SPDX-License-Identifier: MIT
 package object
 
 import (
